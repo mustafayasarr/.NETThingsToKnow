@@ -153,8 +153,6 @@ public object Prop2 { get; set; }
 
 }
 
- 	```
-
 Üstteki kodu çalıştırdığınızda 'B': cannot derive from sealed type 'A'
 hatasını fırlatacaktır. A sealed olarak işaretlendiğinden B'ye miras
 olarak geçemedim ama sealed olarak işaretlenmiş bir class'a sealed
@@ -373,7 +371,9 @@ olabilir.
 
 -   **Nesne ve Sınıf farkı nedir?**
 
-
+```{=html}
+<!-- -->
+```
 -   Sınıf (class) soyut bir veri tipidir. Nesne (object) ise onun
     somutlaşan bir cismidir.
 
@@ -626,7 +626,9 @@ Exception handling, C# 'da dört anahtar kelime kullanılarak yapılır:
 
 -   **throw** : Bir sorun oluştuğunda bir istisna atar.
 
-
+```{=html}
+<!-- -->
+```
 -   **C#'da Access Modifierler nedir?**
 
 Erişim belirleyiciler (access modifiers), koda dışardan yapılmak istenen
