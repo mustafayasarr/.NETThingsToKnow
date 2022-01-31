@@ -6,7 +6,7 @@ Bir değişkenin null olması durumunda eğer Coalescing Operatör'ün ne
 olduğunu bilmiyorsak alttaki gibi bir kontrol ve null olması durumunda
 gerekli işlemleri yaparız. Örnek olarak alttaki gibi.
 
-\`\`\`csharp
+
 
 var name = null;
 
@@ -16,18 +16,18 @@ name = "Varsayılan Ad";
 
 }
 
-\`\`\`
+
 
 Ama alttaki gibi kolayca Coalescing Operatör'ü kullanılarak tek satırda
 null check ve varsayılan değer atama işlemini yapabiliriz.
 
-\`\`\`csharp
+\\\csharp
 
 var name = null;
 
 name = name ?? "Varsayılan Ad";
 
-\`\`\`
+\\\
 
 -   **C# Struct ile Class Arasındaki Farklar Nelerdir?**
 
@@ -44,9 +44,7 @@ işlemlerin olmamasıyla performans artacaktır.
 
 -   **Abstract class ile Interface Arasındaki Farklar Nelerdir?**
 
-```{=html}
-<!-- -->
-```
+
 -   Interface ve abstract class'lar new anahtar sözcüğü ile
     oluşturulamazlar.
 
@@ -78,9 +76,7 @@ işlemlerin olmamasıyla performans artacaktır.
     geçilebilir fakat interface'e herhangi bir yapı kalıtım olarak
     geçilemez.
 
-```{=html}
-<!-- -->
-```
+
 -   **C#'da Class'a Farklı Bir Interface Birde Class Inherit Etmem
     Gerekiyor Sırası Önemli mi?**
 
@@ -94,7 +90,7 @@ class 'A' must come before any interfaces" hatası alacaksınız. Bu
 hatanın nedenini zaten bir üstteki paragrafta söylemiştik inherit
 durumunda önce class sonrasında diğer interface'leriniz eklenmelidir.
 
-\`\`\`csharp
+\\\csharp
 
 public class A { }
 
@@ -102,11 +98,11 @@ public interface B { }
 
 public abstract class C : B, A { }
 
-\`\`\`
+\\\
 
 Yani olması gereken sözdizimi şu şekildedir.
 
-\`\`\`csharp
+\\\csharp
 
 public class A { }
 
@@ -114,7 +110,7 @@ public interface B { }
 
 public abstract class C : A, B { }
 
- \`\`\`
+ \\\
 
 -   **SortedList Nedir?**
 
@@ -139,7 +135,7 @@ kullanabileceğiniz bu keyword sayesinde kullanılan class hiçbir şekilde
 başka bir class'a miras olarak geçilemez. Özetle Sealed, sınıflar için
 kalıtım yapmayı, üyeler için ise override edilmeyi önler.
 
-\`\`\`csharp
+\\\csharp
 
 public sealed class A
 
@@ -157,14 +153,14 @@ public object Prop2 { get; set; }
 
 }
 
- \`\`\`
+ \\\
 
 Üstteki kodu çalıştırdığınızda 'B': cannot derive from sealed type 'A'
 hatasını fırlatacaktır. A sealed olarak işaretlendiğinden B'ye miras
 olarak geçemedim ama sealed olarak işaretlenmiş bir class'a sealed
 olmayan bir class miras olarak geçilebiliyor.
 
-\`\`\`csharp
+\\\csharp
 
 public class C
 
@@ -182,7 +178,7 @@ public object Prop1 { get; set; }
 
 }
 
- \`\`\`
+ \\\
 
  
 
@@ -250,7 +246,7 @@ HTML yardımcıları ile yazılan kodu daha markup diline yakın olarak
 yazılmasını ve View'lerin daha okunabilir olmasını sağlar. Dolayısıyla
 anlamasını ve geliştirmesini daha kolay hale getirir.
 
-\`\`\`csharp
+\\\csharp
 
 public class AddressTagHelperComponent : TagHelperComponent
 
@@ -258,15 +254,15 @@ public class AddressTagHelperComponent : TagHelperComponent
 
 private readonly string \_printableButton =
 
-"\<button type=\'button\' class=\'btn btn-info\'
-onclick=\\"window.open("
+"<button type='button' class='btn btn-info\'
+onclick=\"window.open("
 
-"\'https://binged.it/2AXRRYw\')\\"\>" +
+"'https://binged.it/2AXRRYw\')\">" +
 
-"\<span class=\'glyphicon glyphicon-road\'
-aria-hidden=\'true\'\>\</span\>" +
+"<span class='glyphicon glyphicon-road'
+aria-hidden='true'\></span>" +
 
-"\</button\>";
+"</button>";
 
 public override int Order =\> 3;
 
@@ -296,11 +292,11 @@ output.Content.SetHtmlContent(
 
 }
 
- \`\`\`
+ \\\
 
 \<address /\> elementi alttaki gibi kullanılabilir olacaktır.
 
-\`\`\`csharp
+\\\csharp
 
 \<address printable\>
 
@@ -314,7 +310,7 @@ Redmond, WA 98052-6399\<br /\>
 
 \</address\>
 
-\`\`\`
+\\\
 
  
 
