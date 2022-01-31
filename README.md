@@ -110,7 +110,7 @@ public interface B { }
 
 public abstract class C : A, B { }
 
- ```
+```
 
 -   **SortedList Nedir?**
 
@@ -153,7 +153,7 @@ public object Prop2 { get; set; }
 
 }
 
- ```
+```
 
 Üstteki kodu çalıştırdığınızda 'B': cannot derive from sealed type 'A'
 hatasını fırlatacaktır. A sealed olarak işaretlendiğinden B'ye miras
