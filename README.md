@@ -10,7 +10,7 @@ var name = null;
 
 if (name == null) {
 
-name = "Varsayılan Ad";
+name = “Varsayılan Ad”;
 
 }
 
@@ -22,7 +22,7 @@ Ama alttaki gibi kolayca Coalescing Operatör&#39;ü kullanılarak tek satırda 
 
 var name = null;
 
-name = name ?? &quot;Varsayılan Ad&quot;;
+name = name ?? “Varsayılan Ad”;
 
 ```
 
@@ -45,22 +45,29 @@ Temelde classlar structların yapabildiği herşeyi yapabilmekte. Peki aradaki t
 
 Evet önemli çünkü bir class&#39;a en fazla bir tane class inherit edilebiliyor ama istenilen sayıda interface inherit edilebiliyor bu durumda eğer class ve interface inherit edecekseniz öncelikle class virgül ile ayırarak diğer interface&#39;lerinizi eklemelisiniz.
 
-Örnek verecek olursak alttaki gibi bir kullanımda &quot;Error CS1722 Base class &#39;A&#39; must come before any interfaces&quot; hatası alacaksınız. Bu hatanın nedenini zaten bir üstteki paragrafta söylemiştik inherit durumunda önce class sonrasında diğer interface&#39;leriniz eklenmelidir.
+Örnek verecek olursak alttaki gibi bir kullanımda “Error CS1722 Base class &#39;A&#39; must come before any interfaces” hatası alacaksınız. Bu hatanın nedenini zaten bir üstteki paragrafta söylemiştik inherit durumunda önce class sonrasında diğer interface&#39;leriniz eklenmelidir.
 
-1. publicclass A {}
-2.
-3. publicinterface B {}
-4.
-5. publicabstractclass C : B, A {}
+```csharp
+
+public class A { }
+
+public interface B { }
+
+public abstract class C : B, A { }
+
+```
 
 Yani olması gereken sözdizimi şu şekildedir.
 
-1. publicclass A {}
-2.
-3. publicinterface B {}
-4.
-5. publicabstractclass C : A, B {}
-6.
+```csharp
+
+public class A { }
+
+public interface B { }
+
+public abstract class C : A, B { }
+
+ ```
 
 - **SortedList Nedir?**
 
@@ -74,29 +81,47 @@ Sortedlist verileri key-value(anahtar-deger) olarak saklanmaktadır. Sortedlist&
 
 **Sealed,** Miras(Inheritance) alınmasını istemediğiniz sınıflar için kullanabileceğiniz bu keyword sayesinde kullanılan class hiçbir şekilde başka bir class&#39;a miras olarak geçilemez. Özetle Sealed, sınıflar için kalıtım yapmayı, üyeler için ise override edilmeyi önler.
 
-1. publicsealedclass A
-2. {
-3. publicobjectProp1{get;set;}
-4. }
-5.
-6. publicclass B : A
-7. {
-8. publicobjectProp2{get;set;}
-9. }
-10.
+```csharp
+
+public sealed class A
+
+{
+
+public object Prop1 { get; set; }
+
+}
+
+public class B : A
+
+{
+
+public object Prop2 { get; set; }
+
+}
+
+ ```
 
 Üstteki kodu çalıştırdığınızda &#39;B&#39;: cannot derive from sealed type &#39;A&#39; hatasını fırlatacaktır. A sealed olarak işaretlendiğinden B&#39;ye miras olarak geçemedim ama sealed olarak işaretlenmiş bir class&#39;a sealed olmayan bir class miras olarak geçilebiliyor.
 
-1. publicclass C
-2. {
-3. publicobjectProp2{get;set;}
-4. }
-5.
-6. publicsealedclass D : C
-7. {
-8. publicobjectProp1{get;set;}
-9. }
-10.
+```csharp
+
+public class C
+
+{
+
+public object Prop2 { get; set; }
+
+}
+
+public sealed class D : C
+
+{
+
+public object Prop1 { get; set; }
+
+}
+
+ ```
 
 Bu şekilde bir kullanımda herhangi bir sorun çıkmayacaktır.
 
@@ -126,42 +151,71 @@ Yukarıdaki örnekte ILogger tipi için singleton bir nesne oluşturmuştuk. Sin
 
 .Net Core ile birlikte gelen Tag Helpers (Etiket Yardımcıları), Razor HTML yardımcıları ile yazılan kodu daha markup diline yakın olarak yazılmasını ve View&#39;lerin daha okunabilir olmasını sağlar. Dolayısıyla anlamasını ve geliştirmesini daha kolay hale getirir.
 
-1. publicclassAddressTagHelperComponent:TagHelperComponent
-2. {
-3. privatereadonlystring \_printableButton =
-4. &quot;\&lt;button type=&#39;button&#39; class=&#39;btn btn-info&#39; onclick=\&quot;window.open(&quot;
-5. &quot;&#39;https://binged.it/2AXRRYw&#39;)\&quot;\&gt;&quot;+
-6. &quot;\&lt;span class=&#39;glyphicon glyphicon-road&#39; aria-hidden=&#39;true&#39;\&gt;\&lt;/span\&gt;&quot;+
-7. &quot;\&lt;/button\&gt;&quot;;
-8.
-9. publicoverrideintOrder=\&gt;3;
-10.
-11. publicoverrideasyncTaskProcessAsync(TagHelperContext context,
-12. TagHelperOutput output)
-13. {
-14. if(string.Equals(context.TagName,&quot;address&quot;,
-15. StringComparison.OrdinalIgnoreCase)&amp;&amp;
-16. output.Attributes.ContainsName(&quot;printable&quot;))
-17. {
-18. var content =await output.GetChildContentAsync();
-19. output.Content.SetHtmlContent(
-20. $&quot;\&lt;div\&gt;{content.GetContent()}\&lt;/div\&gt;{\_printableButton}&quot;);
-21. }
-22. }
-23. }
-24.
+```csharp
+
+public class AddressTagHelperComponent : TagHelperComponent
+
+{
+
+private readonly string \_printableButton =
+
+“\&lt;button type=&#39;button&#39; class=&#39;btn btn-info&#39; onclick=\”window.open(“
+
+“&#39;https://binged.it/2AXRRYw&#39;)\”\&gt;” +
+
+“\&lt;span class=&#39;glyphicon glyphicon-road&#39; aria-hidden=&#39;true&#39;\&gt;\&lt;/span\&gt;” +
+
+“\&lt;/button\&gt;”;
+
+public override int Order =\&gt; 3;
+
+public override async Task ProcessAsync(TagHelperContext context,
+
+TagHelperOutput output)
+
+{
+
+if (string.Equals(context.TagName, “address”,
+
+StringComparison.OrdinalIgnoreCase) &amp;&amp;
+
+output.Attributes.ContainsName(“printable”))
+
+{
+
+var content = await output.GetChildContentAsync();
+
+output.Content.SetHtmlContent(
+
+$”\&lt;div\&gt;{content.GetContent()}\&lt;/div\&gt;{\_printableButton}”);
+
+}
+
+}
+
+}
+
+ ```
 
 \&lt;address /\&gt; elementi alttaki gibi kullanılabilir olacaktır.
 
-1. \&lt;addressprintable\&gt;
-2. One Microsoft Way\&lt;br/\&gt;
-3. Redmond, WA 98052-6399\&lt;br/\&gt;
-4. \&lt;abbrtitle=&quot;Phone&quot;\&gt;P:\&lt;/abbr\&gt;
-5. 425.555.0100
-6. \&lt;/address\&gt;
-7.
+```csharp
 
-- ![](RackMultipart20220131-4-1qzfwhn_html_24636be7e0dff404.png)**Yazılım Yaşam Döngüsü Nedir? (Software Development Lifecycle)**
+\&lt;address printable\&gt;
+
+One Microsoft Way\&lt;br /\&gt;
+
+Redmond, WA 98052-6399\&lt;br /\&gt;
+
+\&lt;abbr title=“Phone”\&gt;P:\&lt;/abbr\&gt;
+
+425.555.0100
+
+\&lt;/address\&gt;
+
+```
+
+- ![](RackMultipart20220131-4-xkzxmf_html_24636be7e0dff404.png)**Yazılım Yaşam Döngüsü Nedir? (Software Development Lifecycle)**
 
 Bir yazılım projesinin geliştirilmesi, sadece kodlamadan oluşmamaktadır. Basitçe bir proje geliştirilirken projenin planlama, analiz, tasarım, üretim ve test aşamaları yer almaktadır ve almalıdır. Bu aşamalar bir kere gerçekleştirildikten sonra proje tamamlanmayabilir. Bu aşamaların bir döngü halinde düşünülmesi gerekmektedir. Proje tamamlandıktan sonra gelecek istekler, hata düzeltmeleri, projeye eklenecek yeni modüller vs konular için bu süreç devam etmektedir. Bu döngüye yazılım geliştirme yaşam döngüsü adı verilmektedir.
 
