@@ -10,7 +10,7 @@ var name = null;
 
 if (name == null) {
 
-name = &quot;Varsayılan Ad&quot;;
+name = "Varsayılan Ad";
 
 }
 
