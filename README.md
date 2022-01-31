@@ -119,7 +119,7 @@ Sortedlist'in farkı içerisindeki verileri sıralı olarak saklamasıdır.
 Sıralama key değerine göre asc(a-z) türünde yapılmaktadır. Sıralama
 metin yada sayısal değer üzerinden yapılabilmektedir.
 
--   **Virtual, abstract, interface, Sealed ve static keywordlerini
+-**Virtual, abstract, interface, Sealed ve static keywordlerini
     kısaca açıklayınız.**
 
 **Interface (Arayüz),** İçinde sadece kendisinden türeyen sınıfların
@@ -153,7 +153,7 @@ public object Prop2 { get; set; }
 
 }
 
-```
+ 	```
 
 Üstteki kodu çalıştırdığınızda 'B': cannot derive from sealed type 'A'
 hatasını fırlatacaktır. A sealed olarak işaretlendiğinden B'ye miras
@@ -373,9 +373,7 @@ olabilir.
 
 -   **Nesne ve Sınıf farkı nedir?**
 
-```{=html}
-<!-- -->
-```
+
 -   Sınıf (class) soyut bir veri tipidir. Nesne (object) ise onun
     somutlaşan bir cismidir.
 
@@ -628,9 +626,7 @@ Exception handling, C# 'da dört anahtar kelime kullanılarak yapılır:
 
 -   **throw** : Bir sorun oluştuğunda bir istisna atar.
 
-```{=html}
-<!-- -->
-```
+
 -   **C#'da Access Modifierler nedir?**
 
 Erişim belirleyiciler (access modifiers), koda dışardan yapılmak istenen
